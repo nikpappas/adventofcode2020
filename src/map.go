@@ -22,3 +22,20 @@ func mapLinesToInts(lines []string) []int {
 	return ints
 
 }
+
+func mapLinesToBoard(lines []string) [][]string {
+	var board [][]string
+
+	for _, line := range lines {
+		if string(line[len(line)-1:]) == "\n" {
+			line = line[:len(line)-1]
+		}
+		var toAppend []string
+		for _, c := range line {
+			toAppend = append(toAppend, string(c))
+		}
+		board = append(board, toAppend)
+
+	}
+	return board
+}
