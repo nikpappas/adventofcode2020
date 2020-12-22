@@ -2,15 +2,15 @@ package main
 
 import "fmt"
 
-func main() {
+func day1() {
 	var lines = readLines("inputs/day1.txt")
 	var ints = mapLinesToInts(lines)
-	solution1(ints)
-	solution2(ints)
 
+	day1Sol1(ints)
+	day1Sol2(ints)
 }
 
-func solution1(ints []int) int {
+func day1Sol1(ints []int) int {
 	fmt.Println("Solution 1")
 	for i, a := range ints {
 		for j, b := range ints {
@@ -25,7 +25,7 @@ func solution1(ints []int) int {
 	return -1
 
 }
-func solution2(ints []int) int {
+func day1Sol2(ints []int) int {
 	fmt.Println("Solution 2")
 	for i, a := range ints {
 		for j, b := range ints {
