@@ -6,6 +6,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"strings"
 )
 
 var nikos = "nikos"
@@ -37,6 +38,7 @@ func readLines(fileName string) []string {
 	var line string
 	for {
 		line, err = reader.ReadString('\n')
+		line = strings.TrimSpace(line)
 		if err != nil && err != io.EOF {
 			fmt.Println(err)
 			break
