@@ -7,8 +7,8 @@ import (
 
 func day3() {
 	fmt.Println("day3")
-	var lines = readLines("inputs/day3.txt")
-	var board = mapLinesToBoard(lines)
+	lines := readLines("inputs/day3.txt")
+	board := mapLinesToBoard(lines)
 
 	day3Sol1(board, 3, 1)
 	steps := [][2]int{
