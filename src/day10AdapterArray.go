@@ -8,7 +8,7 @@ import (
 
 var sec = time.Now().Unix()
 func day10(){
-	lines := readLines("inputs/day10.txt")
+	lines := readLines("inputs/day10test.txt")
 	
 	ints := mapLinesToInts(lines)
 	sort.Ints(ints)
@@ -34,47 +34,31 @@ func day10sol1(ints []int) int{
 
 
 func day10sol2(ints []int) int{
-	perms :=countPermutations(ints,  []bool{}, 1)
-	return len(perms)+1
+	perms :=countPermutations(ints, 0)
+	return perms+1
 }
 
-func countPermutations(ints []int, count[]bool, i int ) []bool{
-	// fmt.Println("len(ints)",len(ints))
-	// fmt.Println("ints",ints)
-	lenPerms:=len(count)
-	if lenPerms%10000000==0{
-		now := time.Now().Unix()
-		fmt.Println(lenPerms, now-sec,"s")
-		sec =now
+func countPermutations(ints []int, count int ) int{
+	if len(ints) < 2{
+		return count
 	}
-	for i<len(ints)-1{
+
+	for i:=0;i<len(ints)-1;i++{
 		diffNext:=ints[i+1] - ints[i-1]
 		// fmt.Println("'i'",i, "diff", diffNext)
 
 		if diffNext <=3{
 			var newInts []int
-			for j:=0;j<len(ints);j++{
+			for j:=i+1;j<len(ints);j++{
 				if i!=j{
 					newInts=append(newInts,ints[j])
 				}
 			}
 			// fmt.Println("newints",newInts)
 			// fmt.Println(permHash)
-				count=append(count, true)
-				count = countPermutations(newInts, count, i)
+			count = countPermutations(newInts, count+1)
 			// fmt.Println("up a level")
 		}
-		i++
 	}
 	return count
-}
-
-func hash(perm[]int) string{
-	toRet:= ""
-
-	for _,n := range perm{
-		toRet+=fmt.Sprint(n)+","
-	}
-//	fmt.Println(perm, toRet)
-	return toRet
 }
