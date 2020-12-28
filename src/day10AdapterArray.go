@@ -34,10 +34,11 @@ func day10sol1(ints []int) int{
 
 
 func day10sol2(ints []int) int{
-	return len(countPermutations(ints, [][]int{}))+1
+	perms, _ :=countPermutations(ints, [][]int{}, make(map[string](bool)))
+	return len(perms)+1
 }
 
-func countPermutations(ints []int, perms [][]int) [][]int{
+func countPermutations(ints []int, perms [][]int, hashes map[string](bool), ) ([][]int, map[string](bool)){
 	// fmt.Println("len(ints)",len(ints))
 	// fmt.Println("ints",ints)
 	lenPerms:=len(perms)
@@ -58,25 +59,22 @@ func countPermutations(ints []int, perms [][]int) [][]int{
 				}
 			}
 			// fmt.Println("newints",newInts)
-			if !contains(perms, newInts){
+			permHash:= hash(newInts)
+			if !hashes[permHash]{
 				perms  = append(perms, newInts)
-				perms = countPermutations(newInts, perms)
+				hashes[permHash]=true
+				perms, hashes = countPermutations(newInts, perms, hashes)
 			}
 			// fmt.Println("up a level")
 		}
 	}
-	return perms
+	return perms, hashes
 }
-func equals(a []int, b[]int)bool{
-	if len(a)!= len(b) {return false}
-	for i,ai :=range a{
-		if ai != b[i] {return false}
+
+func hash(perm[]int) string{
+	toRet:= string(perm[0])
+	for _,n := range perm{
+		toRet+=string(n)+","
 	}
-	return true
-}
-func contains(a[][]int, b[]int) bool{
-	for _,ai:=range a{
-		if equals(ai,b) {return true}
-	}
-	return false
+	return toRet
 }
