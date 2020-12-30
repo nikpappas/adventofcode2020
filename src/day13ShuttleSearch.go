@@ -72,12 +72,21 @@ func day13sol2(details []BusDetails) int {
 				if (buffer-lcm[det.id])%det.id == 0 {
 					lcm[det.id] = buffer
 				} else {
-					lcm[det.id] = buffer + det.id - (buffer-lcm[det.id])%det.id
-					buffer = lcm[det.id]
+					max := 0
+					id := 0
+					for _, det2 := range details {
+						cur := det2.id - (buffer-lcm[det2.id])%det2.id
+						if cur > max {
+							max = cur
+							id = det2.id
+						}
+					}
+					lcm[id] = buffer + id - (buffer-lcm[id])%id
+					buffer = lcm[id]
 				}
 				it++
 				if it%10000000 == 0 {
-					fmt.Println(buffer)
+					fmt.Println(det.id, buffer, lcm)
 				}
 			}
 		}
@@ -168,7 +177,6 @@ func day13test() {
 			toi, _ := strconv.Atoi(d)
 			deetss = append(deetss, BusDetails{toi, i})
 		}
-
 	}
 	minHash = day13sol2(deetss)
 	fmt.Println(minHash)
@@ -180,7 +188,6 @@ func day13test() {
 			toi, _ := strconv.Atoi(d)
 			deetss = append(deetss, BusDetails{toi, i})
 		}
-
 	}
 	minHash = day13sol2(deetss)
 	fmt.Println(minHash)
