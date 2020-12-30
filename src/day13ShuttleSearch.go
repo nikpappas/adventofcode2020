@@ -55,79 +55,38 @@ func day13sol1(ids []int, arrival int) int {
 }
 
 func day13sol2(details []BusDetails) int {
-	lcmInt := 1
-	buffer := 0
-	lcm := make(map[int](int))
+	fmt.Println(details)
+	timestamp := 0
+	maxDelay := 0
+	maxId := 0
+	prevTimestamp := timestamp
 	for _, d := range details {
-		lcm[d.id] = d.delay
-		if lcm[d.id] > buffer {
-			buffer = lcm[d.id]
+		if maxId < d.id {
+			maxId = d.id
+			maxDelay = d.delay
 		}
-		lcmInt *= d.id
+
 	}
-	it := 0
-	for solved := false; !solved; solved = allEqual(lcm) {
-		for _, det := range details {
-			if lcm[det.id] < buffer {
-				if (buffer-lcm[det.id])%det.id == 0 {
-					lcm[det.id] = buffer
-				} else {
-					max := 0
-					id := 0
-					for _, det2 := range details {
-						cur := det2.id - (buffer-lcm[det2.id])%det2.id
-						if cur > max {
-							max = cur
-							id = det2.id
-						}
-					}
-					lcm[id] = buffer + id - (buffer-lcm[id])%id
-					buffer = lcm[id]
-				}
-				it++
-				if it%10000000 == 0 {
-					fmt.Println(det.id, buffer, lcm)
-				}
-			}
+	fmt.Println(timestamp, maxDelay, maxId)
+	for timestamp = -maxDelay; !isValidTimestamp(details, timestamp); timestamp += maxId {
+		if timestamp-prevTimestamp > 100000000000 {
+			fmt.Println(timestamp)
+			prevTimestamp = timestamp
 		}
 	}
-	return lcmInt - buffer
 
-	// prod := 1
-	// for _, id := range idsTahtMatter {
-	// 	prod *= id
-	// }
-	// return prod
-
-	// positions := make(map[int](int))
-	// for _, det := range details {
-	// 	positions[det.id] = det.delay
-	// }
-	// fmt.Println(positions)
-	// for solved := false; !solved; {
-	// 	for _, det := range details {
-	// 		fmt.Println(det)
-	// 		solved = true
-
-	// 	}
-	// }
-	// return 0
+	return timestamp
 
 }
 
-func allEqual(times map[int]int) bool {
-	var any int
-	for _, time := range times {
-		any = time
-		break
-	}
-
-	for _, time := range times {
-		if any != time {
+func isValidTimestamp(details []BusDetails, timestamp int) bool {
+	for _, d := range details {
+		if (timestamp+d.delay)%d.id != 0 {
 			return false
 		}
 	}
 	return true
+
 }
 
 func day13test() {
@@ -145,6 +104,7 @@ func day13test() {
 	}
 	minHash = day13sol2(deetss)
 	fmt.Println(minHash)
+	assert(1068781, minHash)
 
 	deets = []string{"17", "x", "13", "19"}
 	deetss = []BusDetails{}
@@ -157,6 +117,7 @@ func day13test() {
 	}
 	minHash = day13sol2(deetss)
 	fmt.Println(minHash)
+	assert(3417, minHash)
 
 	deets = []string{"67", "7", "59", "61"}
 	deetss = []BusDetails{}
@@ -169,6 +130,7 @@ func day13test() {
 	}
 	minHash = day13sol2(deetss)
 	fmt.Println(minHash)
+	assert(754018, minHash)
 
 	deets = []string{"67", "x", "7", "59", "61"}
 	deetss = []BusDetails{}
@@ -180,6 +142,7 @@ func day13test() {
 	}
 	minHash = day13sol2(deetss)
 	fmt.Println(minHash)
+	assert(779210, minHash)
 
 	deets = []string{"67", "7", "x", "59", "61"}
 	deetss = []BusDetails{}
@@ -191,5 +154,6 @@ func day13test() {
 	}
 	minHash = day13sol2(deetss)
 	fmt.Println(minHash)
+	assert(1261476, minHash)
 
 }
