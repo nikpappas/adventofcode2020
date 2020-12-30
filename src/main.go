@@ -14,5 +14,5 @@ func main() {
 	// day10test()
 	// day11()
 	day12()
-	// day12test()
+	day12test()
 }
