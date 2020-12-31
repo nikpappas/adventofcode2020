@@ -1,10 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"./files"
+	"./maps"
+)
 
 func day1() {
-	var lines = readLines("inputs/day1.txt")
-	var ints = mapLinesToInts(lines)
+	fmt.Println("Day 1.")
+	var lines = files.ReadLines("inputs/day1.txt")
+	var ints = maps.MapLinesToInts(lines)
 
 	day1Sol1(ints)
 	day1Sol2(ints)

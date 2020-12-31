@@ -1,4 +1,4 @@
-package main
+package files
 
 import (
 	"bufio"
@@ -11,19 +11,19 @@ import (
 
 var nikos = "nikos"
 
-func check(e error) {
+func Check(e error) {
 	if e != nil {
 		panic(e)
 	}
 }
 
-func readFile(fileName string) string {
+func ReadFile(fileName string) string {
 	dat, err := ioutil.ReadFile(fileName)
-	check(err)
+	Check(err)
 	return string(dat)
 }
 
-func readLines(fileName string) []string {
+func ReadLines(fileName string) []string {
 	file, err := os.Open(fileName)
 
 	if err != nil {

@@ -3,10 +3,14 @@ package main
 import (
 	"fmt"
 	"strings"
+
+	"./files"
 )
 
 func day6() {
-	lines := readLines("inputs/day6.txt")
+	fmt.Println("Day 6.")
+
+	lines := files.ReadLines("inputs/day6.txt")
 	groups := splitGroups(lines)
 	sum := day6Sol1(groups)
 	fmt.Println(sum)

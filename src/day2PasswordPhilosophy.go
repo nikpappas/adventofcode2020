@@ -4,11 +4,13 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+
+	"./files"
 )
 
 func day2() {
-	fmt.Println("day2")
-	lines := readLines("inputs/day2.txt")
+	fmt.Println("Day 2.")
+	lines := files.ReadLines("inputs/day2.txt")
 
 	day2Sol1(lines)
 	day2Sol2(lines)

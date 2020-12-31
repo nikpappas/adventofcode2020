@@ -5,6 +5,8 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+
+	"./files"
 )
 
 var requiredKeys = [...]string{
@@ -47,8 +49,8 @@ var fieldValidation = map[string]func(string) bool{
 	}} // (Passport ID)
 
 func day4() {
-	fmt.Println("day4")
-	lines := readLines("inputs/day4.txt")
+	fmt.Println("Day 4.")
+	lines := files.ReadLines("inputs/day4.txt")
 	passports := parsePassports(lines)
 	fmt.Println("Total Passports", len(passports))
 

@@ -3,10 +3,14 @@ package main
 import (
 	"fmt"
 	"sort"
+
+	"./files"
 )
 
 func day5() {
-	lines := readLines("inputs/day5.txt")
+	fmt.Println("Day 5.")
+
+	lines := files.ReadLines("inputs/day5.txt")
 	max, ids := day5Sol1(lines)
 	fmt.Println("amx", max)
 

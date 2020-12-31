@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+
+	"./files"
 )
 
 type bagLimitation struct {
@@ -12,7 +14,9 @@ type bagLimitation struct {
 }
 
 func day7() {
-	lines := readLines("inputs/day7.txt")
+	fmt.Println("Day 7.")
+
+	lines := files.ReadLines("inputs/day7.txt")
 	sum := day7sol1(lines)
 	fmt.Println(sum)
 	sum2 := day7sol2(lines)

@@ -1,11 +1,11 @@
-package main
+package maps
 
 import (
 	"fmt"
 	"strconv"
 )
 
-func mapLinesToInts(lines []string) []int {
+func MapLinesToInts(lines []string) []int {
 	var ints []int
 	for _, line := range lines {
 		if string(line[len(line)-1:]) == "\n" {
@@ -23,7 +23,7 @@ func mapLinesToInts(lines []string) []int {
 
 }
 
-func mapLinesToBoard(lines []string) [][]string {
+func MapLinesToBoard(lines []string) [][]string {
 	var board [][]string
 
 	for _, line := range lines {

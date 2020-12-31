@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"math"
 	"strconv"
+
+	"./files"
 )
 
 const (
@@ -39,7 +41,9 @@ type ShipWithWayPoint struct {
 }
 
 func day12() {
-	lines := readLines("inputs/day12.txt")
+	fmt.Println("Day 12.")
+
+	lines := files.ReadLines("inputs/day12.txt")
 	instructions := parseNavInstructions(lines)
 
 	fmt.Println("1. =================")
@@ -232,7 +236,7 @@ func day12test() {
 	fmt.Println()
 
 	fmt.Println(err)
-	lines := readLines("inputs/day12test.txt")
+	lines := files.ReadLines("inputs/day12test.txt")
 	instructions := parseNavInstructions(lines)
 	fmt.Println("1. =================")
 	x, y := day12sol1(instructions)

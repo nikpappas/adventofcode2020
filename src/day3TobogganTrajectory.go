@@ -3,12 +3,15 @@ package main
 import (
 	"fmt"
 	"strings"
+
+	"./files"
+	"./maps"
 )
 
 func day3() {
-	fmt.Println("day3")
-	lines := readLines("inputs/day3.txt")
-	board := mapLinesToBoard(lines)
+	fmt.Println("Day 3.")
+	lines := files.ReadLines("inputs/day3.txt")
+	board := maps.MapLinesToBoard(lines)
 
 	day3Sol1(board, 3, 1)
 	steps := [][2]int{

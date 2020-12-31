@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+
+	"./files"
 )
 
 type BusDetails struct {
@@ -12,7 +14,9 @@ type BusDetails struct {
 }
 
 func day13() {
-	lines := readLines("inputs/day13.txt")
+	fmt.Println("Day 13.")
+
+	lines := files.ReadLines("inputs/day13.txt")
 	arrival, _ := strconv.Atoi(lines[0])
 	var ids []int
 	for _, id := range strings.Split(lines[1], ",") {
