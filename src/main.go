@@ -55,6 +55,9 @@ func main() {
 	case 14:
 		day14()
 		break
+	case 15:
+		day15()
+		break
 	}
 }
 
@@ -64,4 +67,5 @@ func test() {
 	day12test()
 	day13test()
 	day14test()
+	day15test()
 }
