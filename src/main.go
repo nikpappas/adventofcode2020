@@ -64,6 +64,9 @@ func main() {
 	case 17:
 		day17()
 		break
+	case 18:
+		day18()
+		break
 	default:
 		fmt.Println("No day ", day)
 	}
@@ -77,4 +80,5 @@ func test() {
 	day13test()
 	day14test()
 	day15test()
+	day18test()
 }
