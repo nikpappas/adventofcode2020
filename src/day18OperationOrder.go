@@ -24,7 +24,8 @@ func day18sol2(lines []string) int {
 
 		// line := addBrackets(line)
 		res := calcBrackets(line)
-		sum += res
+		val, _ := strconv.Atoi(res)
+		sum += val
 		fmt.Println("======================", res)
 		fmt.Println(sum)
 	}
@@ -57,7 +58,7 @@ func day18sol1(lines []string) int {
 // func getOperands(line string, index int) (string, string, bool) {
 
 // }
-func calcBrackets(line string) int {
+func calcBrackets(line string) string {
 	latestOpeningBracket := indexOfLast(line, '(')
 	for latestOpeningBracket != -1 {
 		fmt.Println(line)
@@ -66,7 +67,7 @@ func calcBrackets(line string) int {
 
 		fmt.Println("->", line[latestOpeningBracket+1:firstClosing])
 		res := calcPrecedenceLine(line[latestOpeningBracket+1 : firstClosing])
-		line = line[:latestOpeningBracket] + fmt.Sprint(res) + line[firstClosing+1:]
+		line = line[:latestOpeningBracket] + res + line[firstClosing+1:]
 		fmt.Println("newline", line)
 		latestOpeningBracket = indexOfLast(line, '(')
 	}
@@ -91,45 +92,81 @@ func indexOfFirst(line string, cQuery rune) int {
 	}
 	return -1
 }
-func calcPrecedenceLine(line string) int {
-	fmt.Println(line)
-	indexPlus := strings.IndexRune(line, '+')
-	indexMult := strings.IndexRune(line, '*')
-	fmt.Println("indexPlus", indexPlus)
-	fmt.Println("indexMult", indexMult)
-	if indexPlus == -1 && indexMult == -1 {
-		val, _ := strconv.Atoi(line)
-		return val
-	} else if indexPlus >= 0 {
-		left := line[:indexPlus]
-		right := line[indexPlus+1:]
-		multL := indexOfLast(left, '*')
-		multR := indexOfFirst(right, '*')
-		if multL == -1 && multR == -1 {
-			fmt.Println(left, "^+", right)
-			return calcPrecedenceLine(left) + calcPrecedenceLine(right)
-		} else if multL >= 0 {
-			left = left[multL+1:]
-			remainder := line[:multL]
-			fmt.Println(remainder, "^^*", left, "^+", right)
-
-			return (calcPrecedenceLine(left) + calcPrecedenceLine(right)) * calcPrecedenceLine(remainder)
+func indexOfFirstOp(line string) int {
+	firstPlus := indexOfFirst(line, '+')
+	firstMult := indexOfFirst(line, '*')
+	if firstPlus == -1 && firstMult == -1 {
+		return -1
+	} else if firstPlus >= 0 && firstMult >= 0 {
+		if firstPlus < firstMult {
+			return firstPlus
 		} else {
-			remainder := right[multR+1:]
-			right = right[:multR]
-			fmt.Println(left, "^+", right, "^^*", remainder)
-
-			return (calcPrecedenceLine(left) + calcPrecedenceLine(right)) * calcPrecedenceLine(remainder)
-
+			return firstMult
 		}
+	} else if firstPlus > 0 {
+		return firstPlus
 	} else {
-		left := line[:indexMult]
-		right := line[indexMult+1:]
-		fmt.Println(left, "^*", right)
-		return calcPrecedenceLine(left) * calcPrecedenceLine(right)
+		return firstMult
 	}
 
 }
+func calcPrecedenceLine(line string) string {
+	fmt.Println("line", line)
+	firstPlus := indexOfFirst(line, '+')
+	firstMult := indexOfFirst(line, '*')
+	if firstPlus == -1 && firstMult == -1 {
+		return line
+	}
+	if firstPlus >= 0 && firstMult == -1 {
+		fmt.Println("only +")
+		sum := 0
+		toks := strings.Split(line, "+")
+		for _, tok := range toks {
+			val, _ := strconv.Atoi(tok)
+			sum += val
+		}
+		return fmt.Sprint(sum)
+	}
+	if firstMult >= 0 && firstPlus == -1 {
+		fmt.Println("only *")
+		prod := 1
+		toks := strings.Split(line, "*")
+		for _, tok := range toks {
+			val, _ := strconv.Atoi(tok)
+			prod *= val
+		}
+		return fmt.Sprint(prod)
+	}
+
+	for firstPlus >= 0 {
+		if firstPlus < firstMult {
+			fmt.Println("firstPlus", firstPlus)
+			left, _ := strconv.Atoi(line[:firstPlus])
+			fmt.Println("linetofindnextop", line[firstPlus+1:])
+			nextOperation := firstPlus + indexOfFirstOp(line[firstPlus+1:]) + 1
+			rightToParse := line[firstPlus+1 : nextOperation]
+			fmt.Println("nextOperation", nextOperation)
+			fmt.Println("rightToParse", rightToParse)
+			right, _ := strconv.Atoi(rightToParse)
+			fmt.Println(left, right)
+			line = calcPrecedenceLine(fmt.Sprint(left+right) + line[nextOperation:])
+			firstPlus = indexOfFirst(line, '+')
+		} else {
+
+		}
+	}
+	for firstMult >= 0 {
+		fmt.Println("firstMult")
+		left, _ := strconv.Atoi(line[:firstMult])
+		nextOperation := indexOfFirstOp(line[firstMult+1:])
+		fmt.Println(line[firstMult+1:], "nextOperation", nextOperation)
+		right, _ := strconv.Atoi(line[firstMult:nextOperation])
+		line = calcPrecedenceLine(fmt.Sprint(left+right) + line[:nextOperation])
+		firstMult = indexOfFirst(line, '*')
+	}
+	return line
+}
+
 func calculateLine(line string) (int, int) {
 	fmt.Println(line)
 	res := 0
