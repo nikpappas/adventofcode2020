@@ -1,13 +1,13 @@
-package main
+package src
 
 import (
 	"fmt"
 
-	"./files"
-	"./maps"
+	"nikpappas.com/adventofcode2021/files"
+	"nikpappas.com/adventofcode2021/maps"
 )
 
-func day1() {
+func Day1() {
 	fmt.Println("Day 1.")
 	var lines = files.ReadLines("inputs/day1.txt")
 	var ints = maps.MapLinesToInts(lines)

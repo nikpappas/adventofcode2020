@@ -1,11 +1,11 @@
-package main
+package src
 
 import (
 	"fmt"
 	"strconv"
 	"strings"
 
-	"./files"
+	"nikpappas.com/adventofcode2021/files"
 )
 
 type Instruction struct {
@@ -18,7 +18,7 @@ type State struct {
 	add int
 }
 
-func day8() {
+func Day8() {
 	fmt.Println("Day 8.")
 
 	lines := files.ReadLines("inputs/day8.txt")

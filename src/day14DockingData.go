@@ -1,14 +1,14 @@
-package main
+package src
 
 import (
 	"fmt"
 	"strconv"
 	"strings"
 
-	"./files"
+	"nikpappas.com/adventofcode2021/files"
 )
 
-func day14() {
+func Day14() {
 	fmt.Println("Day 14.")
 
 	lines := files.ReadLines("inputs/day14.txt")
@@ -145,32 +145,4 @@ func parseAddress(op string) int {
 	fmt.Println(op)
 	add, _ := strconv.Atoi(strings.ReplaceAll(strings.ReplaceAll(op, "]", ""), "mem[", ""))
 	return add
-}
-
-func day14test() {
-	bit := "10"
-	mask := "0101"
-	masked := applyMaskAddresses(bit, mask)
-	fmt.Println(bit)
-	fmt.Println(mask)
-	fmt.Println(masked)
-
-	mask = "0X1"
-	fmt.Println(bit)
-	fmt.Println(mask)
-	masked = applyMaskAddresses(bit, mask)
-	fmt.Println(masked)
-
-	mask = "0X01"
-	fmt.Println(bit)
-	fmt.Println(mask)
-	masked = applyMaskAddresses(bit, mask)
-	fmt.Println(masked)
-
-	mask = "XX01"
-	fmt.Println(bit)
-	fmt.Println(mask)
-	masked = applyMaskAddresses(bit, mask)
-	fmt.Println(masked)
-
 }

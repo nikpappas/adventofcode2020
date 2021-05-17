@@ -1,4 +1,4 @@
-package main
+package src
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"./files"
+	"nikpappas.com/adventofcode2021/files"
 )
 
 type Rule struct {
@@ -15,7 +15,7 @@ type Rule struct {
 	r2   []int
 }
 
-func day16() {
+func Day16() {
 	lines := files.ReadLines("inputs/day16.txt")
 	rules, ticket, tickets := parseInput(lines)
 

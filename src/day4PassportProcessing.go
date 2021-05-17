@@ -1,4 +1,4 @@
-package main
+package src
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"./files"
+	"nikpappas.com/adventofcode2021/files"
 )
 
 var requiredKeys = [...]string{
@@ -48,7 +48,7 @@ var fieldValidation = map[string]func(string) bool{
 		return checkRegex("^[0-9]{9}$", v)
 	}} // (Passport ID)
 
-func day4() {
+func Day4() {
 	fmt.Println("Day 4.")
 	lines := files.ReadLines("inputs/day4.txt")
 	passports := parsePassports(lines)

@@ -1,11 +1,11 @@
-package main
+package src
 
 import (
 	"fmt"
 	"strconv"
 	"strings"
 
-	"./files"
+	"nikpappas.com/adventofcode2021/files"
 )
 
 type bagLimitation struct {
@@ -13,7 +13,7 @@ type bagLimitation struct {
 	num    int
 }
 
-func day7() {
+func Day7() {
 	fmt.Println("Day 7.")
 
 	lines := files.ReadLines("inputs/day7.txt")

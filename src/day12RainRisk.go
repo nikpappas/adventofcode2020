@@ -1,4 +1,4 @@
-package main
+package src
 
 import (
 	"errors"
@@ -6,7 +6,7 @@ import (
 	"math"
 	"strconv"
 
-	"./files"
+	"nikpappas.com/adventofcode2021/files"
 )
 
 const (
@@ -40,7 +40,7 @@ type ShipWithWayPoint struct {
 	wp WayPoint
 }
 
-func day12() {
+func Day12() {
 	fmt.Println("Day 12.")
 
 	lines := files.ReadLines("inputs/day12.txt")
@@ -172,81 +172,6 @@ func turn90(ship ShipWithWayPoint, sig int) (ShipWithWayPoint, error) {
 
 	ship.wp = newWP
 	return ship, err
-}
-
-func day12test() {
-	var ship ShipWithWayPoint
-	ship.wp.x = 10
-	ship.wp.y = -1
-	var err error
-
-	fmt.Println("1. test")
-	ship, err = turnLeft(ship)
-	assert(-1, ship.wp.x)
-	assert(-10, ship.wp.y)
-	fmt.Println()
-
-	fmt.Println("2. test")
-	ship, err = turnLeft(ship)
-	assert(-10, ship.wp.x)
-	assert(1, ship.wp.y)
-	fmt.Println()
-
-	fmt.Println("3. test")
-	ship, err = turnLeft(ship)
-	assert(1, ship.wp.x)
-	assert(10, ship.wp.y)
-	fmt.Println()
-
-	fmt.Println("4. test")
-	ship, err = turnLeft(ship)
-	assert(10, ship.wp.x)
-	assert(-1, ship.wp.y)
-	fmt.Println()
-
-	fmt.Println("1. test")
-	ship, err = turnRight(ship)
-	assert(1, ship.wp.x)
-	assert(10, ship.wp.y)
-	fmt.Println()
-
-	fmt.Println("2. test")
-	ship, err = turnRight(ship)
-	assert(-10, ship.wp.x)
-	assert(1, ship.wp.y)
-	fmt.Println()
-
-	fmt.Println("3. test")
-	ship, err = turnRight(ship)
-	assert(-1, ship.wp.x)
-	assert(-10, ship.wp.y)
-	fmt.Println()
-
-	fmt.Println("4. test")
-	ship, err = turnRight(ship)
-	assert(10, ship.wp.x)
-	assert(-1, ship.wp.y)
-	fmt.Println()
-
-	fmt.Println("1a. test")
-	ship.wp.x = 0
-	ship, err = turnLeft(ship)
-	assert(-1, ship.wp.x)
-	assert(0, ship.wp.y)
-	fmt.Println()
-
-	fmt.Println(err)
-	lines := files.ReadLines("inputs/day12test.txt")
-	instructions := parseNavInstructions(lines)
-	fmt.Println("1. =================")
-	x, y := day12sol1(instructions)
-	fmt.Println(x, y)
-	fmt.Println(x + y)
-	fmt.Println("2. =================")
-	x, y = day12sol2(instructions)
-	fmt.Println(x, y)
-	fmt.Println(x + y)
-
 }
 
 func findQuarter(x int, y int) (int, error) {

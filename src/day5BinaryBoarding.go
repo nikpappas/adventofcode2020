@@ -1,13 +1,13 @@
-package main
+package src
 
 import (
 	"fmt"
 	"sort"
 
-	"./files"
+	"nikpappas.com/adventofcode2021/files"
 )
 
-func day5() {
+func Day5() {
 	fmt.Println("Day 5.")
 
 	lines := files.ReadLines("inputs/day5.txt")

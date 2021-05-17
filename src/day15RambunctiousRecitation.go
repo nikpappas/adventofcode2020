@@ -1,14 +1,14 @@
-package main
+package src
 
 import (
 	"fmt"
 	"strings"
 
-	"./files"
-	"./maps"
+	"nikpappas.com/adventofcode2021/files"
+	"nikpappas.com/adventofcode2021/maps"
 )
 
-func day15() {
+func Day15() {
 	lines := files.ReadLines("inputs/day15.txt")
 	toks := strings.Split(lines[0], ",")
 	ints := maps.MapLinesToInts(toks)
@@ -76,11 +76,6 @@ func findLast(ints []int, x int) int {
 	}
 	return -1
 
-}
-func day15test() {
-	day15sol1([]int{1, 0}, 20)
-
-	day15sol1([]int{1, 3, 2}, 2020)
 }
 
 func getLast(arr []int) int {

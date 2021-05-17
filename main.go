@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+
+	"nikpappas.com/adventofcode2021/src"
 )
 
 func main() {
@@ -11,77 +13,67 @@ func main() {
 
 	switch day {
 	case 0:
-		test()
+		fmt.Println("For tests run ./test.sh")
 		break
 	case 1:
-		day1()
+		src.Day1()
 		break
 	case 2:
-		day2()
+		src.Day2()
 		break
 	case 3:
-		day3()
+		src.Day3()
 		break
 	case 4:
-		day4()
+		src.Day4()
 		break
 	case 5:
-		day5()
+		src.Day5()
 		break
 	case 6:
-		day6()
+		src.Day6()
 		break
 	case 7:
-		day7()
+		src.Day7()
 		break
 	case 8:
-		day8()
+		src.Day8()
 		break
 	case 9:
-		day9()
+		src.Day9()
 		break
 	case 10:
-		day10()
+		src.Day10()
 		break
 	case 11:
-		day11()
+		src.Day11()
 		break
 	case 12:
-		day12()
+		src.Day12()
 		break
 	case 13:
-		day13()
+		src.Day13()
 		break
 	case 14:
-		day14()
+		src.Day14()
 		break
 	case 15:
-		day15()
+		src.Day15()
 		break
 	case 16:
-		day16()
+		src.Day16()
 		break
 	case 17:
-		day17()
+		src.Day17()
 		break
 	case 18:
-		day18()
+		src.Day18()
 		break
 	case 19:
-		day19()
+		src.Day19()
 		break
 	default:
 		fmt.Println("No day ", day)
 	}
 
-}
-
-func test() {
-	fmt.Println("Testing")
-	day10test()
-	day12test()
-	day13test()
-	day14test()
-	day15test()
-	day18test()
 }

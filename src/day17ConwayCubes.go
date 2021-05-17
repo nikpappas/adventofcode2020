@@ -1,10 +1,10 @@
-package main
+package src
 
 import (
 	"fmt"
 
-	"./files"
-	"./maps"
+	"nikpappas.com/adventofcode2021/files"
+	"nikpappas.com/adventofcode2021/maps"
 )
 
 type ConwayCube struct {
@@ -16,7 +16,7 @@ type ConwayHyperCube struct {
 	size  int
 }
 
-func day17() {
+func Day17() {
 	lines := files.ReadLines("inputs/day17.txt")
 	boardSlice := maps.MapLinesToBoard(lines)
 	cube := ConwayCube{nil, 0}

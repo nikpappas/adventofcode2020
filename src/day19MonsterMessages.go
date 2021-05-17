@@ -1,14 +1,14 @@
-package main
+package src
 
 import (
 	"fmt"
 	"strconv"
 	"strings"
 
-	"./files"
+	"nikpappas.com/adventofcode2021/files"
 )
 
-func day19() {
+func Day19() {
 	lines := files.ReadLines("inputs/day19.txt")
 	var rulesStr []string
 	var messages []string
